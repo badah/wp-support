@@ -6,13 +6,15 @@ use StudioVisual\Support\Contracts\TemplateInterface;
 
 class Shortcode implements TemplateInterface
 {
-    public $name;
-    public $data;
+    protected $name;
+    protected $data;
+    protected $path;
 
-    public function __construct($name, $data)
+    public function __construct($name, $data, $path = 'front/shortcodes/')
     {
         $this->name = $name;
         $this->data = $data;
+        $this->path = $path;
         $this->register();
     }
 
@@ -23,7 +25,7 @@ class Shortcode implements TemplateInterface
 
     public function getTemplatePath()
     {
-        return PLUGIN_ROOT_PATH . 'app/Partials/Shortcodes/'. $this->name . '.php';
+        return plugin_dir_path( dirname( __FILE__ ) ) . $this->path . $this->name . '.php';
     }
 
     public function build($atts, $content = null)
