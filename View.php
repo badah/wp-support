@@ -2,7 +2,7 @@
 
 namespace StudioVisual\Support;
 
-use StudioVisual\Dotz\Contracts\TemplateInterface;
+use StudioVisual\Support\Contracts\TemplateInterface;
 
 class View implements TemplateInterface
 {

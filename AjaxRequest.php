@@ -2,7 +2,6 @@
 
 namespace StudioVisual\Support;
 
-use StudioVisual\Dotz\Core\Core;
 use StudioVisual\Support\Helpers\Format;
 
 class AjaxRequest

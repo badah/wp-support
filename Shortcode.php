@@ -2,7 +2,9 @@
 
 namespace StudioVisual\Support;
 
-class Shortcode implements \StudioVisual\Dotz\Contracts\TemplateInterface
+use StudioVisual\Support\Contracts\TemplateInterface;
+
+class Shortcode implements TemplateInterface
 {
     public $name;
     public $data;
