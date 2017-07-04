@@ -2,7 +2,7 @@
 
 namespace StudioVisual\Support\Helpers;
 
-class Format
+class String
 {
     static public function toSnakeCase($string)
     {

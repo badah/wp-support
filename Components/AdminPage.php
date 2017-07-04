@@ -1,10 +1,8 @@
 <?php
 
-namespace StudioVisual\Support\Helpers;
+namespace StudioVisual\Support\Components;
 
-use StudioVisual\Support\View;
-
-class PageV2
+class AdminPage
 {
     private $title;
     private $slug;

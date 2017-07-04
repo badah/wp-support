@@ -1,9 +1,8 @@
 <?php
 
-namespace StudioVisual\Support\Api;
+namespace StudioVisual\Support\Components;
 
-
-class HttpApi
+class HttpClient
 {
     /**
      * @param $url
