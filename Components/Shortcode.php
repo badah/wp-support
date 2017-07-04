@@ -10,7 +10,7 @@ class Shortcode implements TemplateInterface
     protected $data;
     protected $path;
 
-    public function __construct($name, $data, $path = 'front/shortcodes/')
+    public function __construct($name, $data, $path)
     {
         $this->name = $name;
         $this->data = $data;
@@ -25,7 +25,7 @@ class Shortcode implements TemplateInterface
 
     public function getTemplatePath()
     {
-        return plugin_dir_path( dirname( __FILE__ ) ) . $this->path . $this->name . '.php';
+        return $this->path . '/' . $this->name . '.php';
     }
 
     public function build($atts, $content = null)
