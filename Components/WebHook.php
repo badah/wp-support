@@ -1,9 +1,8 @@
 <?php
 
-namespace StudioVisual\Support\Helpers;
+namespace StudioVisual\Support\Components;
 
-
-class Hooks
+class WebHook
 {
     /**
      * Recebe Post de Notificação

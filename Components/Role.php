@@ -1,6 +1,6 @@
 <?php
 
-namespace StudioVisual\Support\Helpers;
+namespace StudioVisual\Support\Components;
 
 class Role
 {

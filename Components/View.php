@@ -1,8 +1,8 @@
 <?php
 
-namespace StudioVisual\Support;
+namespace StudioVisual\Support\Components;
 
-use StudioVisual\Dotz\Contracts\TemplateInterface;
+use StudioVisual\Support\Contracts\TemplateInterface;
 
 class View implements TemplateInterface
 {

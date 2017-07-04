@@ -1,16 +1,20 @@
 <?php
 
-namespace StudioVisual\Support;
+namespace StudioVisual\Support\Components;
 
-class Shortcode implements \StudioVisual\Dotz\Contracts\TemplateInterface
+use StudioVisual\Support\Contracts\TemplateInterface;
+
+class Shortcode implements TemplateInterface
 {
-    public $name;
-    public $data;
+    protected $name;
+    protected $data;
+    protected $path;
 
-    public function __construct($name, $data)
+    public function __construct($name, $data, $path)
     {
         $this->name = $name;
         $this->data = $data;
+        $this->path = $path;
         $this->register();
     }
 
@@ -21,7 +25,7 @@ class Shortcode implements \StudioVisual\Dotz\Contracts\TemplateInterface
 
     public function getTemplatePath()
     {
-        return PLUGIN_ROOT_PATH . 'app/Partials/Shortcodes/'. $this->name . '.php';
+        return $this->path . '/' . $this->name . '.php';
     }
 
     public function build($atts, $content = null)
