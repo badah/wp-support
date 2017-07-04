@@ -1,8 +1,8 @@
 <?php
 
-namespace StudioVisual\Support;
+namespace StudioVisual\Support\Components;
 
-use StudioVisual\Support\Helpers\Format;
+use StudioVisual\Support\Helpers\String;
 
 class AjaxRequest
 {
@@ -33,7 +33,7 @@ class AjaxRequest
     protected function registerScripts()
     {
         if (!$this->isAdmin()) {
-            $this->script_object = Format::toCamelCase($this->script_file_name);
+            $this->script_object = String::toCamelCase($this->script_file_name);
             $this->script_dependencies = ['jquery'];
             add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
         } else {
@@ -62,7 +62,7 @@ class AjaxRequest
 
     public function registerHandle()
     {
-        $obj = Format::toSnakeCase($this->script_file_name);
+        $obj = String::toSnakeCase($this->script_file_name);
         add_action("wp_ajax_{$obj}", [$this, 'handle']);
 
         if (!$this->isAdmin()) {

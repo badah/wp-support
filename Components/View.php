@@ -1,6 +1,6 @@
 <?php
 
-namespace StudioVisual\Support;
+namespace StudioVisual\Support\Components;
 
 use StudioVisual\Support\Contracts\TemplateInterface;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace StudioVisual\Support;
+namespace StudioVisual\Support\Components;
 
-class Notice
+class AdminNotice
 {
     private $message;
     private $type;

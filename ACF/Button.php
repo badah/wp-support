@@ -1,8 +1,6 @@
 <?php
 
-namespace StudioVisual\Support\CustomFields;
-
-use StudioVisual\Dotz\Core\Core;
+namespace StudioVisual\Support\ACF;
 
 class Button extends \acf_field
 {
