@@ -30,6 +30,10 @@ class Shortcode implements TemplateInterface
 
     public function build($atts, $content = null)
     {
+        foreach ( $this->get_data() as $key => $value ) {
+            $$key = $value;
+        }
+
         ob_start();
         include $this->getTemplatePath();
         $html = ob_get_contents();
@@ -41,5 +45,17 @@ class Shortcode implements TemplateInterface
     public function render()
     {
         echo do_shortcode("[{$this->name}]");
+    }
+
+    public function send_data( $data ) {
+        $this->data = $data;
+    }
+
+    protected function get_data() {
+        return $this->data;
+    }
+
+    public function is_present() {
+        // Detecta se o shortcode está presenta na página.
     }
 }
