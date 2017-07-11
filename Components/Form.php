@@ -11,11 +11,20 @@ class Form
 {
 	protected $fields = [];
 
-	public function __construct( $fields ) {
+	protected $page;
+
+	public function __construct( $fields, $page ) {
 		$this->fields = $fields;
+		$this->page = $page;
 	}
 
 	public function is_submited() {
+
+		global $post;
+
+		if ( ! has_shortcode( $post->post_content, $this->page ) ) {
+			return false;
+		}
 
 		if ( empty( $_POST ) ) {
 			return false;
