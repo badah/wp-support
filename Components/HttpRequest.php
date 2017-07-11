@@ -2,7 +2,7 @@
 
 namespace StudioVisual\Support\Components;
 
-class HttpRequest
+abstract class HttpRequest
 {
     protected $url;
 
@@ -18,7 +18,7 @@ class HttpRequest
             'body'    => json_encode( $this->body ),
         ];
 
-        return new HttpResponse( wp_remote_post( $this->url, $args ) );
+        return wp_remote_post( $this->url, $args );
 
     }
 

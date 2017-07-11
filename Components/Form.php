@@ -9,25 +9,30 @@ namespace StudioVisual\Support\Components;
  */
 class Form
 {
-    protected $fields = [];
+	protected $fields = [];
 
-    public function __construct( $fields )
-    {
-        $this->fields = $fields;
-    }
+	public function __construct( $fields ) {
+		$this->fields = $fields;
+	}
 
-    public function has_sent() {
-        foreach ( $this->fields as $field ) {
-            if ( isset( $_POST[ $field ] ) ) {
-                continue;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
+	public function is_submited() {
 
-    public function get_value( $field, $default = '' ) {
-        return isset( $_POST[$field] ) ? $_POST[$field] : $default;
-    }
+		if ( empty( $_POST ) ) {
+			return false;
+		}
+
+		foreach ( $this->fields as $field ) {
+			if ( isset( $_POST[ $field ] ) ) {
+				continue;
+			} else {
+				echo '<pre>', var_dump($field), '</pre>';
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public function get_value( $field, $default = '' ) {
+		return isset( $_POST[ $field ] ) ? $_POST[ $field ] : $default;
+	}
 }

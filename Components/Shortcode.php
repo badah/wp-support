@@ -47,7 +47,7 @@ class Shortcode implements TemplateInterface
         echo do_shortcode("[{$this->name}]");
     }
 
-    public function send_data( $data ) {
+    public function print_out($data ) {
         $this->data = $data;
     }
 
