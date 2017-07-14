@@ -34,7 +34,6 @@ class Form
 			if ( isset( $_POST[ $field ] ) ) {
 				continue;
 			} else {
-				echo '<pre>', var_dump($field), '</pre>';
 				return false;
 			}
 		}
