@@ -24,7 +24,7 @@ class Shortcode implements TemplateInterface
 	}
 
 	public function getTemplatePath() {
-		return $this->path . '/' . $this->name . '.php';
+		return $this->path . '/' . str_replace('_', '-', $this->name ) . '.php';
 	}
 
 	public function build( $atts, $content = null ) {

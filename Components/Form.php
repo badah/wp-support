@@ -22,7 +22,7 @@ class Form
 
 		global $post;
 
-		if ( ! has_shortcode( $post->post_content, $this->page ) ) {
+		if ( ! has_shortcode( $post->post_content, str_replace( '-', '_', $this->page ) ) ) {
 			return false;
 		}
 
@@ -30,8 +30,8 @@ class Form
 			return false;
 		}
 
-		foreach ( $this->fields as $field ) {
-			if ( isset( $_POST[ $field ] ) ) {
+		foreach ( $this->fields as $name => $properties ) {
+			if ( isset( $_POST[ $name ] ) ) {
 				continue;
 			} else {
 				return false;
