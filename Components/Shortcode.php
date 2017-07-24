@@ -3,6 +3,7 @@
 namespace StudioVisual\Support\Components;
 
 use StudioVisual\Support\Contracts\TemplateInterface;
+use StudioVisual\Support\Components\StringFormat;
 
 class Shortcode implements TemplateInterface
 {
@@ -12,7 +13,7 @@ class Shortcode implements TemplateInterface
 	protected $atts;
 
 	public function __construct( $name, $data, $path, $atts ) {
-		$this->name = $name;
+		$this->name = StringFormat::convert_camel_case( $name );
 		$this->data = $data;
 		$this->path = $path;
 		$this->atts = $atts;
@@ -62,4 +63,6 @@ class Shortcode implements TemplateInterface
 	public function the_attr( $attr ) {
 		echo esc_attr__( $attr );
 	}
+
+
 }
