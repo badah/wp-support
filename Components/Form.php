@@ -40,7 +40,7 @@ class Form
 		return true;
 	}
 
-	public function get_value( $field, $default = '' ) {
+	public static function get_value( $field, $default = '' ) {
 		return isset( $_POST[ $field ] ) ? $_POST[ $field ] : $default;
 	}
 }
