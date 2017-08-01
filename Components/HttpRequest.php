@@ -22,26 +22,20 @@ abstract class HttpRequest
 
     }
 
-     public function get($url, $params = [], $headers = []) {
+     public function get( $params = [] ) {
 
-        $headers = array_merge(['Content-Type' => 'application/json', 'Accept' => 'application/json'], $headers);
+        $headers = array_merge([
+        	'Content-Type' => 'application/json',
+			'Accept' => 'application/json'],
+			$this->headers
+		);
 
         $args = [
             'headers' => $headers,
             'timeout' => 45,
         ];
 
-        $response = wp_remote_get($url, $args);
-
-        $code = wp_remote_retrieve_response_code($response);
-        if (200 !== $code) {
-            throw new \Exception($code . ' - ' . \wp_remote_retrieve_response_message($response));
-        }
-
-        return [
-            'body'    => json_decode(wp_remote_retrieve_body($response), true),
-            'headers' => wp_remote_retrieve_headers($response)
-        ];
+        return wp_remote_get(add_query_arg( $params, esc_url_raw( $this->url ) ), $args);
     }
 
     public function delete($url, $body = [], $headers = []) {
