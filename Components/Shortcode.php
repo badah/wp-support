@@ -3,7 +3,6 @@
 namespace StudioVisual\Support\Components;
 
 use StudioVisual\Support\Contracts\TemplateInterface;
-use StudioVisual\Support\Components\StringFormat;
 
 class Shortcode implements TemplateInterface
 {
@@ -63,6 +62,5 @@ class Shortcode implements TemplateInterface
 	public function the_attr( $attr ) {
 		echo esc_attr__( $attr );
 	}
-
 
 }
