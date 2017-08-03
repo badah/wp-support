@@ -22,6 +22,11 @@ class Form
 
 		global $post;
 
+		// TODO: Improve target specificity and maybe remove this check.
+		if ( ! is_object( $post ) ) {
+			return false;
+		}
+
 		if ( ! has_shortcode( $post->post_content, str_replace( '-', '_', $this->page ) ) ) {
 			return false;
 		}
