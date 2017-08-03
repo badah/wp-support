@@ -55,8 +55,12 @@ class Shortcode implements TemplateInterface
 		$this->data = $data;
 	}
 
-	protected function get_data() {
+	public function get_data() {
 		return $this->data;
+	}
+
+	public function add_att( $att ) {
+		$this->atts = array_merge( $this->atts, $att );
 	}
 
 	public function the_attr( $attr ) {
