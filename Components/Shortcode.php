@@ -7,9 +7,9 @@ use StudioVisual\Support\Contracts\TemplateInterface;
 class Shortcode implements TemplateInterface
 {
 	protected $name;
-	protected $data;
+	protected $data = [];
 	protected $path;
-	protected $atts;
+	protected $atts = [];
 
 	public function __construct( $name, $data, $path, $atts ) {
 		$this->name = StringFormat::convert_camel_case( $name );
