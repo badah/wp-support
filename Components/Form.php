@@ -18,20 +18,12 @@ class Form
 		$this->page = $page;
 	}
 
+	/**
+	 * @todo Improve method in order to detect if current page has a form to submit.
+	 * @return bool
+	 */
 	public function is_submited() {
-
-//		global $post;
-//
-//		// TODO: Improve target specificity and maybe remove this check.
-//		if ( ! is_object( $post ) ) {
-//			return false;
-//		}
-//
-//		if ( ! has_shortcode( $post->post_content, str_replace( '-', '_', $this->page ) ) ) {
-//			return false;
-//		}
-
-		if ( empty( $_POST ) ) {
+		if ( ! isset( $_POST ) && empty( $_POST ) ) {
 			return false;
 		}
 

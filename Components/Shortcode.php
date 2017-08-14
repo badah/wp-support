@@ -67,4 +67,21 @@ class Shortcode implements TemplateInterface
 		echo esc_attr__( $attr );
 	}
 
+	public function is_present() {
+		global $post;
+
+		if ( ! is_object( $post ) ) {
+			return false;
+		}
+
+		if ( ! has_shortcode( $post->post_content, $this->name ) ) {
+			return false;
+		}
+
+		if ( ! has_shortcode( $post->post_content, str_replace( '-', '_', $this->name ) ) ) {
+			return false;
+		}
+
+		return true;
+	}
 }
