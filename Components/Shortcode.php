@@ -7,14 +7,14 @@ use StudioVisual\Support\Contracts\TemplateInterface;
 class Shortcode implements TemplateInterface
 {
 	protected $name;
-	protected $data = [];
 	protected $path;
-	protected $atts = [];
+	protected $data;
+	protected $atts;
 
-	public function __construct( $name, $data, $path, $atts ) {
+	public function __construct( $name, $path, $data = [], $atts = [] ) {
 		$this->name = StringFormat::convert_camel_case( $name );
-		$this->data = $data;
 		$this->path = $path;
+		$this->data = $data;
 		$this->atts = $atts;
 		$this->register();
 	}
