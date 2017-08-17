@@ -84,4 +84,12 @@ class Shortcode implements TemplateInterface
 
 		return true;
 	}
+
+	public function has_data( $data ) {
+		if ( isset( $data ) && ! empty( $data ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
