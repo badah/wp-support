@@ -1,6 +1,6 @@
 <?php
 
-namespace StudioVisual\Support\Contracts;
+namespace Badah\WpSupport\Contracts;
 
 interface TemplateInterface
 {

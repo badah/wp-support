@@ -1,6 +1,6 @@
 <?php
 
-namespace StudioVisual\Support\ACF;
+namespace Badah\WpSupport\ACF;
 
 class Button extends \acf_field
 {

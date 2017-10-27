@@ -1,6 +1,6 @@
 <?php
 
-namespace StudioVisual\Support\Helpers;
+namespace Badah\WpSupport\Helpers;
 
 class String
 {

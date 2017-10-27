@@ -1,6 +1,6 @@
 <?php
 
-namespace StudioVisual\Support\Components;
+namespace Badah\WpSupport\Components;
 
 class WebHook
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace StudioVisual\Support\Components;
+namespace Badah\WpSupport\Components;
 
-use StudioVisual\Support\Contracts\TemplateInterface;
+use Badah\WpSupport\Contracts\TemplateInterface;
 
 class View implements TemplateInterface
 {

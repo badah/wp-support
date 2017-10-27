@@ -1,8 +1,8 @@
 <?php
 
-namespace StudioVisual\Support\Components;
+namespace Badah\WpSupport\Components;
 
-use StudioVisual\Support\Helpers\String;
+use Badah\WpSupport\Helpers\String;
 
 class AjaxRequest
 {
