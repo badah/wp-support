@@ -1,12 +1,35 @@
 <?php
+/**
+ * Admin Page
+ *
+ * @package Badah\WpSupport\ACF
+ */
 
 namespace Badah\WpSupport\ACF;
 
+/**
+ * Class AdminPage
+ *
+ * @package Badah\WpSupport\ACF
+ */
 class AdminPage {
 
+	/**
+	 * Parent Page
+	 *
+	 * @var array - final page settings.
+	 */
 	protected $parent;
 
-	public function add( $title, $is_parent = true ) {
+	/**
+	 * Add an admin page
+	 *
+	 * @param string $title     - page title.
+	 * @param bool   $is_parent - add as a parent page if true.
+	 *
+	 * @return WP_Error
+	 */
+	public function add( $title, $is_parent = false ) {
 		$page_title = $title;
 		$menu_title = $title;
 
@@ -19,31 +42,43 @@ class AdminPage {
 		}
 
 		if ( $is_parent ) {
-			return $this->parent = acf_add_options_page(
+			$this->parent = acf_add_options_page(
 				[
 					'page_title' => $page_title,
 					'menu_title' => $menu_title,
-					'redirect' => true,
+					'redirect'   => true,
 				]
 			);
+
+			return $this->parent;
 		}
 
 		if ( ! $is_parent ) {
 			return acf_add_options_sub_page(
 				[
-					'page_title' => $page_title,
-					'menu_title' => $menu_title,
+					'page_title'  => $page_title,
+					'menu_title'  => $menu_title,
 					'parent_slug' => $this->parent['menu_slug'],
 				]
 			);
 		}
 	}
 
-	public function setParentSlug( $parent_slug ) {
+	/**
+	 * Set up Parent Slug
+	 *
+	 * @param string $parent_slug - parent slug name.
+	 */
+	public function set_parent_slug( $parent_slug ) {
 		$this->parent['menu_slug'] = $parent_slug;
 	}
 
-	public function getParentSlug() {
+	/**
+	 * Get Parent Slug
+	 *
+	 * @return mixed
+	 */
+	public function get_parent_slug() {
 		return $this->parent['menu_slug'];
 	}
 }
