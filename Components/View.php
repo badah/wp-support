@@ -1,38 +1,34 @@
 <?php
 
-namespace StudioVisual\Support\Components;
+namespace Badah\WpSupport\Components;
 
-use StudioVisual\Support\Contracts\TemplateInterface;
+use Badah\WpSupport\Contracts\TemplateInterface;
 
-class View implements TemplateInterface
-{
-    private $name;
-    private $data;
+class View implements TemplateInterface {
 
-    public function __construct($name, $data)
-    {
-        $this->name = $name;
-        $this->data = $data;
-        $this->register();
-    }
+	private $name;
+	private $data;
 
-    public function getTemplatePath()
-    {
-        return $this->getPath($this->name);
-    }
+	public function __construct( $name, $data ) {
+		$this->name = $name;
+		$this->data = $data;
+		$this->register();
+	}
 
-    public function register()
-    {
-        ob_start();
-        include $this->getTemplatePath();
-        $html = ob_get_contents();
-        ob_end_clean();
+	public function getTemplatePath() {
+		return $this->getPath( $this->name );
+	}
 
-        echo $html;
-    }
+	public function register() {
+		ob_start();
+		include $this->getTemplatePath();
+		$html = ob_get_contents();
+		ob_end_clean();
 
-    public static function getPath($filename)
-    {
-        return PLUGIN_ROOT_PATH . 'app/Partials/Views/' . $filename . '.php';
-    }
+		echo $html;
+	}
+
+	public static function getPath( $filename ) {
+		return PLUGIN_ROOT_PATH . 'app/Partials/Views/' . $filename . '.php';
+	}
 }
