@@ -4,42 +4,37 @@ namespace Badah\WpSupport\Components;
 
 use Badah\WpSupport\Contracts\TemplateInterface;
 
-class Shortcode implements TemplateInterface
-{
-    protected $name;
-    protected $data;
-    protected $path;
+class Shortcode implements TemplateInterface {
 
-    public function __construct($name, $data, $path)
-    {
-        $this->name = $name;
-        $this->data = $data;
-        $this->path = $path;
-        $this->register();
-    }
+	protected $name;
+	protected $data;
+	protected $path;
 
-    public function register()
-    {
-        add_shortcode($this->name, array($this, 'build'));
-    }
+	public function __construct( $name, $data, $path ) {
+		$this->name = $name;
+		$this->data = $data;
+		$this->path = $path;
+		$this->register();
+	}
 
-    public function getTemplatePath()
-    {
-        return $this->path . '/' . $this->name . '.php';
-    }
+	public function register() {
+		add_shortcode( $this->name, array( $this, 'build' ) );
+	}
 
-    public function build($atts, $content = null)
-    {
-        ob_start();
-        include $this->getTemplatePath();
-        $html = ob_get_contents();
-        ob_end_clean();
+	public function getTemplatePath() {
+		return $this->path . '/' . $this->name . '.php';
+	}
 
-        return $html;
-    }
+	public function build( $atts, $content = null ) {
+		ob_start();
+		include $this->getTemplatePath();
+		$html = ob_get_contents();
+		ob_end_clean();
 
-    public function render()
-    {
-        echo do_shortcode("[{$this->name}]");
-    }
+		return $html;
+	}
+
+	public function render() {
+		echo do_shortcode( "[{$this->name}]" );
+	}
 }

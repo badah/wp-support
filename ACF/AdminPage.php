@@ -2,47 +2,48 @@
 
 namespace Badah\WpSupport\ACF;
 
-class AdminPage
-{
-    protected $parent;
+class AdminPage {
 
-    public function add($title, $is_parent = true)
-    {
-        $page_title = $title;
-        $menu_title = $title;
+	protected $parent;
 
-        if (is_array($title)) {
-            $menu_title = $title[1];
-        }
+	public function add( $title, $is_parent = true ) {
+		$page_title = $title;
+		$menu_title = $title;
 
-        if (!function_exists('acf_add_options_page')) {
-            return new WP_Error('dependency', MISSING_ACF);
-        }
+		if ( is_array( $title ) ) {
+			$menu_title = $title[1];
+		}
 
-        if ($is_parent) {
-            return $this->parent = acf_add_options_page([
-                'page_title' => $page_title,
-                'menu_title' => $menu_title,
-                'redirect' => true,
-            ]);
-        }
+		if ( ! function_exists( 'acf_add_options_page' ) ) {
+			return new WP_Error( 'dependency', MISSING_ACF );
+		}
 
-        if (!$is_parent) {
-            return acf_add_options_sub_page([
-                'page_title' => $page_title,
-                'menu_title' => $menu_title,
-                'parent_slug' => $this->parent['menu_slug'],
-            ]);
-        }
-    }
+		if ( $is_parent ) {
+			return $this->parent = acf_add_options_page(
+				[
+					'page_title' => $page_title,
+					'menu_title' => $menu_title,
+					'redirect' => true,
+				]
+			);
+		}
 
-    public function setParentSlug($parent_slug)
-    {
-        $this->parent['menu_slug'] = $parent_slug;
-    }
+		if ( ! $is_parent ) {
+			return acf_add_options_sub_page(
+				[
+					'page_title' => $page_title,
+					'menu_title' => $menu_title,
+					'parent_slug' => $this->parent['menu_slug'],
+				]
+			);
+		}
+	}
 
-    public function getParentSlug()
-    {
-        return $this->parent['menu_slug'];
-    }
+	public function setParentSlug( $parent_slug ) {
+		$this->parent['menu_slug'] = $parent_slug;
+	}
+
+	public function getParentSlug() {
+		return $this->parent['menu_slug'];
+	}
 }
