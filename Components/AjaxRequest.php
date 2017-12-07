@@ -13,19 +13,17 @@ class AjaxRequest {
 	protected $scope;
 	protected $action;
 	protected $data;
+	protected $plugin_name;
 
-	public function __construct( $script_file_name, $action, $data, $scope = 'global' ) {
-		$this->setup( $script_file_name, $action, $data, $scope );
-		$this->registerScripts();
-		$this->registerHandle();
-	}
-
-	protected function setup( $script_file_name, $action, $data, $scope ) {
+	public function __construct( $script_file_name, $action, $data, $plugin_name, $scope = 'global' ) {
 		$this->script_file_name = $script_file_name;
 		$this->scope = $scope;
-		$this->script_name = Core::PLUGIN_NAME . '-' . $this->script_file_name;
+		$this->script_name = $plugin_name . '-' . $this->script_file_name;
 		$this->action = $action;
 		$this->data = $data;
+
+		$this->registerScripts();
+		$this->registerHandle();
 	}
 
 	protected function registerScripts() {
