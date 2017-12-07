@@ -4,11 +4,6 @@ namespace Badah\WpSupport\Components;
 
 class WebHook {
 
-	/**
-	 * Recebe Post de Notificação
-	 *
-	 * @return string|false   Conteúdo enviado por agente externo a este endpoint.
-	 */
 	public static function getPost() {
 		$post = file_get_contents( 'php://input' );
 		if ( empty( $post ) ) {
@@ -23,11 +18,6 @@ class WebHook {
 		return $post;
 	}
 
-	/**
-	 * Recebe Post de Notificação
-	 *
-	 * @return array|boolean   Conteúdo enviado por agente externo a este endpoint.
-	 */
 	public static function havePostParam( $param ) {
 		$post = self::getPost();
 		if ( isset( $post[ $param ] ) && ! empty( $post[ $param ] ) ) {
@@ -36,10 +26,6 @@ class WebHook {
 		return false;
 	}
 
-	/**
-	 * Grava o post de notificação
-	 * @todo Limitar o tamanho do arquivo
-	 */
 	static public function recordPost() {
 		$body = self::getPost();
 		$file = fopen( getcwd() . '/post-notificacao.txt', 'a' );
