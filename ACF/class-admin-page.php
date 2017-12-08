@@ -8,11 +8,11 @@
 namespace Badah\WpSupport\ACF;
 
 /**
- * Class AdminPage
+ * Class Admin_Page
  *
  * @package Badah\WpSupport\ACF
  */
-class AdminPage {
+class Admin_Page {
 
 	/**
 	 * Parent Page
@@ -27,7 +27,7 @@ class AdminPage {
 	 * @param string $title     - page title.
 	 * @param bool   $is_parent - add as a parent page if true.
 	 *
-	 * @return WP_Error
+	 * @return \WP_Error
 	 */
 	public function add( $title, $is_parent = false ) {
 		$page_title = $title;

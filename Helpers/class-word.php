@@ -2,9 +2,9 @@
 
 namespace Badah\WpSupport\Helpers;
 
-class String {
+class Word {
 
-	static public function toSnakeCase( $string ) {
+	static public function to_snake_case( $string ) {
 		return str_replace( '-', '_', $string );
 	}
 
@@ -13,7 +13,7 @@ class String {
 	 * @return string
 	 * @todo Cover all possible situations. E.g.: `foo`, `Foo Bar`,`['foo-bar', 'barFoo']`, ``, etc.
 	 */
-	static function toCamelCase( $string ) {
+	static function to_camel_case( $string ) {
 		$pieces = explode( '-', $string );
 		$converted = [];
 
