@@ -91,7 +91,7 @@ class Ajax_Request {
 		$this->script_version = $script_version;
 	}
 
-	public function set_plugin_name( $plugin_name ) {
-		$this->plugin_name = $plugin_name;
+	public function set_prefix( $prefix ) {
+		$this->prefix = $prefix;
 	}
 }
