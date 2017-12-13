@@ -8,26 +8,25 @@ class Ajax_Request {
 
 	protected $script_name;
 	protected $script_file_name;
+	protected $script_location;
 	protected $script_object;
 	protected $script_dependencies;
 	protected $script_version;
-	protected $script_location;
 
 	protected $scope;
 	protected $action;
 	protected $data;
-	protected $plugin_name;
+	protected $prefix;
 
-	public function __construct( $script_file_name, $action, $data, $plugin_name, $scope = 'global' ) {
+	public function __construct( $script_file_name, $prefix, $script_location, $action, $data, $scope = 'global' ) {
 		$this->scope = $scope;
 		$this->action = $action;
 		$this->data = $data;
 
 		$this->script_file_name = $script_file_name;
-		$this->script_name = $plugin_name . '-' . $this->script_file_name;
-
-		$this->register_scripts();
-		$this->register_handle();
+		$this->script_name = $prefix . '-' . $this->script_file_name;
+		$this->script_location = $script_location;
+		$this->script_version = '1.0.0';
 	}
 
 	protected function register_scripts() {
@@ -73,6 +72,11 @@ class Ajax_Request {
 		$response = is_callable( $this->action ) ? call_user_func( $this->action, $this->data ) : false;
 		wp_send_json( $response );
 		exit;
+	}
+
+	public function register() {
+		$this->register_scripts();
+		$this->register_handle();
 	}
 
 	private function is_admin() {
