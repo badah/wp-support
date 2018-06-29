@@ -1,17 +1,7 @@
 <?php
-/**
- * Admin Page
- *
- * @package Badah\WpSupport\ACF
- */
 
 namespace Badah\WpSupport\ACF;
 
-/**
- * Class Admin_Page
- *
- * @package Badah\WpSupport\ACF
- */
 class Admin_Page {
 
 	/**

@@ -8,12 +8,6 @@ class Admin_Notice {
 	private $type;
 	private $is_dismissible;
 
-	/**
-	 * Notice constructor.
-	 * @param $message string
-	 * @param $type string Os parametros podem ser: error, warning, success, or info.
-	 * @param $is_dismissible boolean
-	 */
 	public function __construct( $message, $type, $is_dismissible = true ) {
 		$this->message = $message;
 		$this->type = $type;

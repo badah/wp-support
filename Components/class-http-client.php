@@ -4,13 +4,6 @@ namespace Badah\WpSupport\Components;
 
 class Http_Client {
 
-	/**
-	 * @param $url
-	 * @param array $body
-	 * @param array $headers
-	 * @return array
-	 * @throws \Exception
-	 */
 	public function post( $url, $body = [], $headers = [] ) {
 		$headers = array_merge(
 			[
