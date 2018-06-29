@@ -2,7 +2,7 @@
 
 namespace Badah\WpSupport\Components;
 
-use Badah\WpSupport\Helpers\Word;
+use Badah\WpSupport\Helpers\Text;
 
 class Ajax_Request {
 
@@ -31,7 +31,7 @@ class Ajax_Request {
 
 	protected function register_scripts() {
 		if ( ! $this->is_admin() ) {
-			$this->script_object = Word::to_camel_case( $this->script_file_name );
+			$this->script_object = Text::to_camel_case( $this->script_file_name );
 			$this->script_dependencies = [ 'jquery' ];
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		} else {
@@ -60,7 +60,7 @@ class Ajax_Request {
 	}
 
 	public function register_handle() {
-		$obj = Word::to_snake_case( $this->script_file_name );
+		$obj = Text::to_snake_case( $this->script_file_name );
 		add_action( "wp_ajax_{$obj}", [ $this, 'handle' ] );
 
 		if ( ! $this->is_admin() ) {
