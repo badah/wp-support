@@ -2,9 +2,9 @@
 
 namespace Badah\WpSupport\Components;
 
-use Badah\WpSupport\Contracts\TemplateInterface;
+use Badah\WpSupport\Contracts\Template_Interface;
 
-class Shortcode implements TemplateInterface {
+class Shortcode implements Template_Interface {
 
 	protected $name;
 	protected $data;

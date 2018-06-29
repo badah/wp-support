@@ -4,7 +4,12 @@ namespace Badah\WpSupport\Components;
 
 class Role {
 
-	public function setWpRoles() {
+	/**
+	 * @var \WP_Roles WordPress Roles object.
+	 */
+	protected $wp_roles;
+
+	public function set_wp_roles() {
 		global $wp_roles;
 
 		if ( ! isset( $wp_roles ) ) {
