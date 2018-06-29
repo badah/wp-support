@@ -2,8 +2,7 @@
 
 namespace Badah\WpSupport\Contracts;
 
-interface TemplateInterface {
+interface Template_Interface {
 
 	public function register();
-	public function getTemplatePath();
 }

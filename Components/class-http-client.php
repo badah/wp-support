@@ -2,16 +2,9 @@
 
 namespace Badah\WpSupport\Components;
 
-class HttpClient {
+class Http_Client {
 
-	/**
-	 * @param $url
-	 * @param array $body
-	 * @param array $headers
-	 * @return array
-	 * @throws \Exception
-	 */
-	static public function post( $url, $body = [], $headers = [] ) {
+	public function post( $url, $body = [], $headers = [] ) {
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',
@@ -22,7 +15,7 @@ class HttpClient {
 		$args = [
 			'timeout' => 45,
 			'headers' => $headers,
-			'body'    => json_encode( $body ),
+			'body'    => wp_json_encode( $body ),
 		];
 
 		$response = wp_remote_post( $url, $args );
@@ -33,7 +26,7 @@ class HttpClient {
 			return $response->get_error_codes();
 		}
 
-		if ( ! in_array( $code, $success ) ) {
+		if ( ! in_array( $code, $success, true ) ) {
 			$message = json_decode( wp_remote_retrieve_body( $response ), true );
 			throw new \Exception( $message[0]['message'] ?? '', $code );
 		}
@@ -51,8 +44,7 @@ class HttpClient {
 	 * @return array
 	 * @throws \Exception
 	 */
-	static public function get( $url, $params = [], $headers = [] ) {
-
+	function get( $url, $params = [], $headers = [] ) {
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',
@@ -66,8 +58,8 @@ class HttpClient {
 		];
 
 		$response = wp_remote_get( $url, $args );
-
 		$code = wp_remote_retrieve_response_code( $response );
+
 		if ( 200 !== $code ) {
 			throw new \Exception( $code . ' - ' . \wp_remote_retrieve_response_message( $response ) );
 		}
@@ -85,7 +77,7 @@ class HttpClient {
 	 * @return array
 	 * @throws \Exception
 	 */
-	static public function delete( $url, $body = [], $headers = [] ) {
+	public function delete( $url, $body = [], $headers = [] ) {
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',
@@ -97,14 +89,14 @@ class HttpClient {
 			'method'  => 'DELETE',
 			'timeout' => 45,
 			'headers' => $headers,
-			'body'    => json_encode( $body ),
+			'body'    => wp_json_encode( $body ),
 		];
 
 		$response = wp_remote_request( $url, $args );
 		$code = wp_remote_retrieve_response_code( $response );
 		$success = [ 200, 201 ];
 
-		if ( ! in_array( $code, $success ) ) {
+		if ( ! in_array( $code, $success, true ) ) {
 			throw new \Exception( $code . ' - ' . \wp_remote_retrieve_response_message( $response ) );
 		}
 
@@ -122,8 +114,7 @@ class HttpClient {
 	 * @return array
 	 * @throws \Exception
 	 */
-	public static function postFile( $url, $params = [], $headers = [], $file = [] ) {
-		// initialise the curl request
+	public static function post_file( $url, $params = [], $headers = [], $file = [] ) {
 		$request = curl_init( $url );
 
 		$headers = array_merge(
@@ -153,7 +144,7 @@ class HttpClient {
 		curl_close( $request );
 
 		$success = [ 200, 201 ];
-		if ( ! in_array( $code, $success ) ) {
+		if ( ! in_array( $code, $success, true ) ) {
 			throw new \Exception( $code );
 		}
 
@@ -181,14 +172,14 @@ class HttpClient {
 			'method'  => 'PUT',
 			'timeout' => 45,
 			'headers' => $headers,
-			'body'    => json_encode( $body ),
+			'body'    => wp_json_encode( $body ),
 		];
 
 		$response = wp_remote_request( $url, $args );
 		$code = wp_remote_retrieve_response_code( $response );
 		$success = [ 200, 201 ];
 
-		if ( ! in_array( $code, $success ) ) {
+		if ( ! in_array( $code, $success, true ) ) {
 			throw new \Exception( $code . ' - ' . \wp_remote_retrieve_response_message( $response ) );
 		}
 

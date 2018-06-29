@@ -2,18 +2,12 @@
 
 namespace Badah\WpSupport\Components;
 
-class AdminNotice {
+class Admin_Notice {
 
 	private $message;
 	private $type;
 	private $is_dismissible;
 
-	/**
-	 * Notice constructor.
-	 * @param $message string
-	 * @param $type string Os parametros podem ser: error, warning, success, or info.
-	 * @param $is_dismissible boolean
-	 */
 	public function __construct( $message, $type, $is_dismissible = true ) {
 		$this->message = $message;
 		$this->type = $type;
@@ -24,8 +18,8 @@ class AdminNotice {
 
 	public function render() {
 		$dismissible = ($this->is_dismissible) ? 'is-dismissible' : ''; ?>
-		<div class="notice notice-<?php echo $this->type; ?> <?php echo $dismissible; ?>">
-			<p><?php echo $this->message; ?></p>
+		<div class="notice notice-<?php echo $this->type; // WPCS: XSS ok. ?> <?php echo $dismissible; // WPCS: XSS ok. ?>">
+			<p><?php echo $this->message; // WPCS: XSS ok. ?></p>
 		</div> 
 		<?php
 	}

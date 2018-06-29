@@ -2,34 +2,34 @@
 
 namespace Badah\WpSupport\Components;
 
-class AdminPage {
+class Admin_Page {
 
-	private $title;
-	private $slug;
-	private $view;
-	private $parent;
-	private $position;
+	protected $title;
+	protected $slug;
+	protected $view;
+	protected $parent;
+	protected $position;
 
 	public function add( $title, callable $view, $parent = null, $position = null ) {
 		$this->title = $title;
-		$this->slug = sanitize_title( $this->title );
+		$this->slug = sanitize_title( $this->title ) . 'php';
 		$this->view = $view;
 		$this->parent = $parent;
 		$this->position = $position;
 
-		add_action( 'admin_menu', [ $this, 'addMenuPage' ] );
+		add_action( 'admin_menu', [ $this, 'add_menu_page' ] );
 
 		return $this;
 	}
 
-	public function addMenuPage() {
+	public function add_menu_page() {
 		if ( null !== $this->parent ) {
 			add_submenu_page(
-				$this->parent->getMenuSlug(),
+				$this->parent->slug,
 				$this->title,
 				$this->title,
 				'manage_options',
-				$this->getMenuSlug(),
+				$this->slug,
 				$this->view
 			);
 			return;
@@ -39,14 +39,10 @@ class AdminPage {
 			$this->title,
 			$this->title,
 			'manage_options',
-			$this->getMenuSlug(),
+			$this->slug,
 			$this->view,
 			'dashicons-tickets',
 			$this->position
 		);
-	}
-
-	public function getMenuSlug() {
-		return 'dotz/' . $this->slug . '.php';
 	}
 }
