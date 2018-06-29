@@ -18,7 +18,7 @@ class Ajax_Request {
 	protected $data;
 	protected $prefix;
 
-	public function __construct( $script_file_name, $prefix, $script_location, $action, $data, $scope = 'global' ) {
+	public function __construct( $prefix, $script_file_name, $script_location, $script_version, $action, $data, $scope = 'global' ) {
 		$this->scope = $scope;
 		$this->action = $action;
 		$this->data = $data;
@@ -26,7 +26,7 @@ class Ajax_Request {
 		$this->script_file_name = $script_file_name;
 		$this->script_name = $prefix . '-' . $this->script_file_name;
 		$this->script_location = $script_location;
-		$this->script_version = '1.0.0';
+		$this->script_version = $script_version;
 	}
 
 	protected function register_scripts() {
