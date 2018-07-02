@@ -37,14 +37,8 @@ class Http_Client {
 		];
 	}
 
-	/**
-	 * @param $url
-	 * @param array $params
-	 * @param array $headers
-	 * @return array
-	 * @throws \Exception
-	 */
-	function get( $url, $params = [], $headers = [] ) {
+	public function get( $url, $params = [], $headers = [] ) {
+
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',
@@ -70,13 +64,6 @@ class Http_Client {
 		];
 	}
 
-	/**
-	 * @param $url
-	 * @param array $body
-	 * @param array $headers
-	 * @return array
-	 * @throws \Exception
-	 */
 	public function delete( $url, $body = [], $headers = [] ) {
 		$headers = array_merge(
 			[
@@ -106,14 +93,6 @@ class Http_Client {
 		];
 	}
 
-	/**
-	 * @param $url
-	 * @param array $params
-	 * @param array $headers
-	 * @param array $file
-	 * @return array
-	 * @throws \Exception
-	 */
 	public static function post_file( $url, $params = [], $headers = [], $file = [] ) {
 		$request = curl_init( $url );
 
@@ -153,14 +132,7 @@ class Http_Client {
 		];
 	}
 
-	/**
-	 * @param $url
-	 * @param array $body
-	 * @param array $headers
-	 * @return array
-	 * @throws \Exception
-	 */
-	static public function put( $url, $body = [], $headers = [] ) {
+	public static function put( $url, $body = [], $headers = [] ) {
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',

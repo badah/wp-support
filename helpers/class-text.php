@@ -2,7 +2,7 @@
 
 namespace Badah\WpSupport\Helpers;
 
-class Word {
+class Text {
 
 	public static function to_snake_case( $string ) {
 		return str_replace( '-', '_', $string );
