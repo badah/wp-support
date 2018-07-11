@@ -25,7 +25,7 @@ class Input {
 	 *
 	 * @var array
 	 */
-	protected $fields;
+	protected $fields = [];
 
 	/**
 	 * All WP user input should contain a nonce
