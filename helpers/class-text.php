@@ -28,4 +28,14 @@ class Text {
 
 		return implode( $converted );
 	}
+
+	/**
+	 * Get only numbers from a query_string
+	 *
+	 * @param  string $subject   String to be filtered.
+	 * @return string            Filtered string with only numbers.
+	 */
+	public static function only_numbers( $subject ) {
+		return preg_replace( '/[^0-9]/', '', (string) $subject );
+	}
 }
