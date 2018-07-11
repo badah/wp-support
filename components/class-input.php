@@ -33,7 +33,7 @@ class Input {
 	 * @param array   $fields         Field names or identification keys.
 	 * @param string  $nonce_action   WP nonce action defined with `wp_nonce_field()` or similar function.
 	 */
-	public function __construct( array $fields, $nonce_action ) {
+	public function __construct( $fields, $nonce_action ) {
 		$this->fields = $fields;
 		$this->nonce_action = $nonce_action;
 	}
