@@ -18,7 +18,7 @@ class Ajax_Request {
 	protected $data;
 	protected $prefix;
 
-	public function __construct( $prefix, $script_file_name, $script_location, $script_version, $action, $data, $scope = 'global' ) {
+	public function __construct( $prefix, $script_file_name, $script_location, $action, $script_version = '', $data = null, $scope = 'global' ) {
 		$this->scope = $scope;
 		$this->action = $action;
 		$this->data = $data;
