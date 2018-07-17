@@ -15,23 +15,25 @@ class Ajax_Request {
 
 	protected $scope;
 	protected $action;
-	protected $data;
+	protected $arguments;
 	protected $prefix;
 
-	public function __construct( $prefix, $script_file_name, $script_location, $action, $script_version = '', $data = null, $scope = 'global' ) {
-		$this->scope = $scope;
-		$this->action = $action;
-		$this->data = $data;
+	public function __construct( $prefix, $script_file_name, $script_location, $script_version = '', $action, $arguments = null, $scope = 'global' ) {
+
+		$this->scope     = $scope;
+		$this->action    = $action;
+		$this->arguments = $arguments;
 
 		$this->script_file_name = $script_file_name;
-		$this->script_name = $prefix . '-' . $this->script_file_name;
-		$this->script_location = $script_location;
-		$this->script_version = $script_version;
+		$this->script_name      = $prefix . '-' . $this->script_file_name;
+		$this->script_location  = $script_location;
+		$this->script_version   = $script_version;
+
 	}
 
 	protected function register_scripts() {
 		if ( ! $this->is_admin() ) {
-			$this->script_object = Text::to_camel_case( $this->script_file_name );
+			$this->script_object       = Text::to_camel_case( $this->script_file_name );
 			$this->script_dependencies = [ 'jquery' ];
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		} else {
@@ -69,7 +71,7 @@ class Ajax_Request {
 	}
 
 	public function handle() {
-		$response = is_callable( $this->action ) ? call_user_func( $this->action, $this->data ) : false;
+		$response = is_callable( $this->action ) ? call_user_func( $this->action, $this->arguments ) : false;
 		wp_send_json( $response );
 		exit;
 	}
