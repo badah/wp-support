@@ -23,7 +23,8 @@ class Text {
 	 * @todo Cover more possible situations. E.g.: `foo`, `Foo Bar`,`['foo-bar', 'barFoo']`, ``, etc.
 	 */
 	public static function to_camel_case( $string ) {
-		$pieces = explode( '-', $string );
+
+		$pieces    = explode( '-', $string );
 		$converted = [];
 
 		foreach ( $pieces as $index => $piece ) {
@@ -35,6 +36,7 @@ class Text {
 		}
 
 		return implode( $converted );
+
 	}
 
 	/**
