@@ -13,12 +13,13 @@ class Ajax_Request {
 	protected $script_dependencies;
 	protected $script_version;
 
-	protected $scope;
+	protected $prefix;
 	protected $action;
 	protected $arguments;
-	protected $prefix;
+	protected $scope;
+	protected $php_data;
 
-	public function __construct( $prefix, $script_file_name, $script_location, $script_version = '', $action, $arguments = null, $scope = 'global' ) {
+	public function __construct( $prefix, $script_file_name, $script_location, $script_version, $action, $arguments = null, $php_data = [], $scope = 'global' ) {
 
 		$this->scope     = $scope;
 		$this->action    = $action;
@@ -29,12 +30,19 @@ class Ajax_Request {
 		$this->script_location  = $script_location;
 		$this->script_version   = $script_version;
 
+		$this->script_object       = Text::to_camel_case( $this->script_file_name );
+		$this->script_dependencies = [ 'jquery' ];
+
+		$this->php_data = array_merge(
+			[
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			],
+			$php_data
+		);
 	}
 
 	protected function register_scripts() {
 		if ( ! $this->is_admin() ) {
-			$this->script_object       = Text::to_camel_case( $this->script_file_name );
-			$this->script_dependencies = [ 'jquery' ];
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		} else {
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
@@ -54,9 +62,7 @@ class Ajax_Request {
 			wp_localize_script(
 				$this->script_name,
 				$this->script_object,
-				[
-					'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				]
+				$this->php_data
 			);
 		}
 	}
