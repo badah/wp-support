@@ -2,13 +2,13 @@
 
 namespace Badah\WpSupport\Components;
 
-class Http_Client {
+class Http_Request {
 
 	public function post( $url, $body = [], $headers = [] ) {
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',
-				'Accept' => 'application/json',
+				'Accept'       => 'application/json',
 			], $headers
 		);
 
@@ -19,8 +19,8 @@ class Http_Client {
 		];
 
 		$response = wp_remote_post( $url, $args );
-		$code = wp_remote_retrieve_response_code( $response );
-		$success = [ 200, 201 ];
+		$code     = wp_remote_retrieve_response_code( $response );
+		$success  = [ 200, 201 ];
 
 		if ( is_wp_error( $response ) ) {
 			return $response->get_error_codes();
@@ -42,7 +42,7 @@ class Http_Client {
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',
-				'Accept' => 'application/json',
+				'Accept'       => 'application/json',
 			], $headers
 		);
 
@@ -52,7 +52,7 @@ class Http_Client {
 		];
 
 		$response = wp_remote_get( $url, $args );
-		$code = wp_remote_retrieve_response_code( $response );
+		$code     = wp_remote_retrieve_response_code( $response );
 
 		if ( 200 !== $code ) {
 			throw new \Exception( $code . ' - ' . \wp_remote_retrieve_response_message( $response ) );
@@ -68,7 +68,7 @@ class Http_Client {
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',
-				'Accept' => 'application/json',
+				'Accept'       => 'application/json',
 			], $headers
 		);
 
@@ -80,8 +80,8 @@ class Http_Client {
 		];
 
 		$response = wp_remote_request( $url, $args );
-		$code = wp_remote_retrieve_response_code( $response );
-		$success = [ 200, 201 ];
+		$code     = wp_remote_retrieve_response_code( $response );
+		$success  = [ 200, 201 ];
 
 		if ( ! in_array( $code, $success, true ) ) {
 			throw new \Exception( $code . ' - ' . \wp_remote_retrieve_response_message( $response ) );
@@ -136,7 +136,7 @@ class Http_Client {
 		$headers = array_merge(
 			[
 				'Content-Type' => 'application/json',
-				'Accept' => 'application/json',
+				'Accept'       => 'application/json',
 			], $headers
 		);
 
@@ -148,8 +148,8 @@ class Http_Client {
 		];
 
 		$response = wp_remote_request( $url, $args );
-		$code = wp_remote_retrieve_response_code( $response );
-		$success = [ 200, 201 ];
+		$code     = wp_remote_retrieve_response_code( $response );
+		$success  = [ 200, 201 ];
 
 		if ( ! in_array( $code, $success, true ) ) {
 			throw new \Exception( $code . ' - ' . \wp_remote_retrieve_response_message( $response ) );
