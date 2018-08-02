@@ -6,17 +6,16 @@ use Badah\WpSupport\Contracts\Template_Interface;
 
 class View implements Template_Interface {
 
-	protected $name;
 	protected $data;
 	protected $path;
 
-	public function __construct( $name, $data, $path ) {
-		$this->name = $name;
+	public function __construct( $path, $data = null ) {
 		$this->data = $data;
 		$this->path = $path;
 
 		$this->register();
 	}
+
 	public function register() {
 		ob_start();
 		include $this->path;
